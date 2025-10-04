@@ -3,10 +3,27 @@ import Sidebar from './components/Sidebar';
 import MapArea from './components/MapArea';
 import styles from './App.module.css';
 
+const timeToMinutes = (timeString) => {
+  if(!timeString) return null;
+  let [time, modifier] = timeString.split(' ');
+  let [hours, minutes] = time.split(':').map(Number)
+
+  if (modifier === 'p.m.' && hours !== 12) {
+    hours += 12;
+  }
+  else if (modifier ==='a.m.' && hours === 12) {
+    hours = 0; 
+  }
+
+  return hours * 60 + minutes; 
+}
+
 // Remove: import mockBuildingData from './MockData'; // We no longer load data this way
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDay, setSelectedDay] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');  
+
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [allBuildingData, setAllBuildingData] = useState([]); // State to hold the data from the backend
   const [loading, setLoading] = useState(true); // State for loading status
@@ -37,17 +54,31 @@ const App = () => {
   // Filter the data based on the search term
   const filteredData = useMemo(() => {
     // ... (rest of your filtering logic remains the same)
-    if (loading || !searchTerm) {
+    if (loading || !selectedDay || !selectedTime) {
       return allBuildingData;
     }
-    const lowerSearchTerm = searchTerm.toLowerCase();
-    return allBuildingData.filter(item => 
-      item.building.toLowerCase().includes(lowerSearchTerm) ||
-      item.room.toLowerCase().includes(lowerSearchTerm) ||
-      item.day.toLowerCase().includes(lowerSearchTerm)
-    );
-  }, [searchTerm, allBuildingData, loading]); // Dependencies ensure re-run when data or search changes
+    
+    const requestMinutes = timeToMinutes(selectedTime);
 
+     return allBuildingData.filter(item => {
+        // 1. Check Day Match
+        // We check if the item's 'day' string includes the selected day (e.g., 'Mon Wed Fri' includes 'Mon')
+        const dayMatch = item.day.toLowerCase().includes(selectedDay.toLowerCase());
+
+        if (!dayMatch) return false;
+
+        // 2. Check Time Overlap
+        const startMinutes = timeToMinutes(item['start time']);
+        const endMinutes = timeToMinutes(item['end time']);
+
+        // Check if the user's requested time (requestMinutes) falls within the room's booked period.
+        // The time is available if the start time is LESS than or equal to the request time,
+        // AND the end time is GREATER than the request time (as a booking usually ends *at* the end time).
+        const timeOverlap = requestMinutes >= startMinutes && requestMinutes < endMinutes;
+
+        return timeOverlap;
+    });
+  }, [selectedDay, selectedTime, allBuildingData, loading]);
 
   // Handler for room selection (rest of the code remains the same)
   const handleRoomSelect = (buildingName, roomDetail) => {
@@ -66,17 +97,46 @@ const App = () => {
       return <div className={styles.appContainer} style={{justifyContent: 'center', alignItems: 'center'}}>Loading Building Data...</div>;
   }
   
-  return (
+   return (
     <div className={styles.appContainer}>
-      {/* ... (rest of the render JSX) ... */}
+      {/* --- NEW HEADER: Day and Time Selector --- */}
       <div className={styles.header}>
+        <h3 className={styles.headerLabel}>Find Available Rooms</h3>
+        
+        <select 
+          className={styles.timeSelect} 
+          value={selectedDay} 
+          onChange={(e) => setSelectedDay(e.target.value)}
+        >
+          <option value="">Select Day</option>
+          {['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map(d => (
+            <option key={d} value={d}>{d}</option>
+          ))}
+        </select>
+        
         <input
-          type="text"
-          placeholder="Search building, room, or day..."
-          className={styles.searchBox}
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          type="time"
+          className={styles.timeInput}
+          // Note: HTML <input type="time"> uses 24-hour format (HH:mm)
+          onChange={(e) => {
+            // Convert 24-hour time to your "H:MM a.m./p.m." format for filtering
+            const [hours24, minutes] = e.target.value.split(':');
+            let hours = parseInt(hours24, 10);
+            const modifier = hours >= 12 ? 'p.m.' : 'a.m.';
+            if (hours === 0) {
+                hours = 12; // Midnight
+            } else if (hours > 12) {
+                hours -= 12;
+            }
+            setSelectedTime(`${hours}:${minutes} ${modifier}`);
+          }}
         />
+        <div className={styles.selectionNote}>
+            {selectedDay && selectedTime ? 
+                `Showing rooms available on ${selectedDay} at ${selectedTime.replace(':00 ', ' ')}` : 
+                'Select a day and time to filter.'
+            }
+        </div>
       </div>
 
       <div className={styles.mainContent}>
