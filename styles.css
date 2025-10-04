@@ -1,0 +1,16 @@
+#holder {
+    display: flex;
+
+    border: solid;
+    height: 500px;
+}
+
+.buildingHolder {
+    border:solid;
+}
+
+#map {
+    border: solid;
+    margin-left: 20px;
+    width: 800px;
+}
