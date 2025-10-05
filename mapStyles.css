@@ -49,11 +49,12 @@ html, body {
     border-radius: 30px;
     height: 95%;
     width: 20%;
-    background-color: gray;
+    background-color: rgb(243, 236, 236);
     margin-top: 0%;
     margin-bottom: 0%;
     margin-left: 0%;
     margin-right: 0.5%;
+    font-family: "Monaco";
 }
 #map{
     border-radius: 30px;
@@ -72,14 +73,16 @@ html, body {
 #popup {
     position: absolute;
     z-index: 2;
-    background: white;
-    width: 500px;
-    height: 500px;
+    background: rgb(255, 255, 255);
+    width: 200px;
+    height: 250px;
     display: none;
+    border: 1px solid gray;
+    border-radius: 7px;
 }
 
 #deletePopup {
-    width: 500px;
+    width: 200px;
 }
 
 .leftPanel div img {
