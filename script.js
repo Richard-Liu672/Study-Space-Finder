@@ -956,9 +956,6 @@ function getDayAndTime() {
 }
 
 
-
-
-
 function addCourseByBuilding(object) {
     if (buildingMap.has(object["building"])) {
         addCourseByDay(buildingMap.get(object["building"]), object);
@@ -1040,20 +1037,28 @@ function displayClassrooms(building) {
     
 }
 
-
 function update() {
     let leftPanel = document.querySelector(".leftPanel");
     leftPanel.innerHTML = "";
     buildingMap.forEach((value, key, map) => {
         let div = document.createElement("div");
+        div.className = "buildingContainer"
         let image = document.createElement("img");
+        image.className = "buildingImage"
         image.src = spots.get(key).img;
+        let buildingName = document.createElement("h3");
+        buildingName.className = "buildingName"
+        buildingName.textContent = spots.get(key).name;
+
         div.setAttribute('data-building', key);
-        div.textContent = spots.get(key).name;
+
         div.appendChild(image);
+        div.appendChild(buildingName);
+
         div.addEventListener("click", () => {
             displayClassrooms(div.dataset.building);
         });
+
         leftPanel.appendChild(div);
     })
 }
