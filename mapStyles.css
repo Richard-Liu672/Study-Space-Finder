@@ -1,3 +1,13 @@
+@font-face {
+  font-family: openSans; 
+  src: url(./Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf); 
+}
+
+* {
+  font-family: "openSans";
+}
+
+
 html, body {
     height: 100%;
     margin: 0;
@@ -11,10 +21,13 @@ html, body {
     flex-direction: column;
 }
 .topMenu{
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
     width: 100%;
-    height: 7%;
+    height: 5%;
     border-radius: 15px;
-    background-color: gray;
+    background-color: #4A66D4;
     flex-shrink: 0; 
     margin-top: 0%;
     margin-bottom: 0%;
@@ -22,39 +35,22 @@ html, body {
     margin-right: 0%;
 }
 
-
+.day-buttons{
+    margin-left: 0.4%;
+}
 .day-btn {
+    border: none;
     margin: 5px; 
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: 10px;
     background: #f5f5f5;
-    transition: background 0.2s;
-    font-family: "Times New Roman";
     font-size: 12;
-    position: relative; 
-    left: 10px; 
-    top: 2px;
-
-}
-
-.day-btn:hover {
-    background:#eaeaea
-}
-
-.day-btn:active{
-    background: #007bff;
-    color: white;
-    border-color: #007bff;
 }
 
 .timeSelector {
-    position: relative;
-    top: -28px;
-    left: 490px;
-    z-index: 10;
-
+    display: block;
+    width: 200px;
+    background-color: yellow;
 }
 
 .mainArea{
@@ -170,7 +166,6 @@ html, body {
     margin-left: 0%;
     margin-right: 0.4%;
     padding: 0px;
-    font-family: "Monaco";
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -181,30 +176,65 @@ html, body {
  .buildingContainer{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    align-content: space-evenly;
-    background-color: #7cd1a1;
+    justify-content: flex-start;
+    align-content: center;
+    background-color: #62e3a5;
     border-radius: 15px;
-    height: auto;
-    width: 95%;
+    height: 130px;
+    width: 94%;
     padding: 0px;
     margin-top: 5px;
     margin-bottom: 5px;
     overflow: hidden;
  }
 
+.imageBuildingContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    background-color: transparent;
+    height: 100%;
+    width: auto;
+}
+
  .buildingImage{
     height: 100%;
-    max-height: 100px;
     aspect-ratio: 1/1;
     border-radius: 15px;
-    object-fit: fill;
+    object-fit: cover;
     margin-right: 8px;
  }
 
+.buildingContentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+}
+
  .buildingName{
-    font-size: 11pt;
-    font-weight: 900;
-    font-family: "Monaco";
+    font-size: 14pt;
     color: black;
+    margin: 4px;
+    font-weight: 475;
+ }
+
+ .fraction{
+    align-self: self-start;
+    background-color: yellow;
+    margin: 2px;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: block;
+    width: auto;
+    border-radius: 10px;
+    font-weight: 550;
+ }
+
+ .icon{
+    height: 80%;
+    aspect-ratio: 1/1;
  }

@@ -1503,19 +1503,25 @@ function update() {
     let leftPanel = document.querySelector(".leftPanel");
     leftPanel.innerHTML = "";
     buildingMap.forEach((value, key, map) => {
-        let div = document.createElement("div");
-        div.className = "buildingContainer"
+        let buildingContainer = document.createElement("div");
+        buildingContainer.className = "buildingContainer"
+        let imageContainer = document.createElement("div");
+        imageContainer.className = "imageBuildingContainer"
+        let buildingContentContainer = document.createElement("div");
+        buildingContentContainer.className = "buildingContentContainer"
+
         let image = document.createElement("img");
         image.className = "buildingImage"
+        imageContainer.appendChild(image)
+
         image.src = spots.get(key).img;
-        let buildingName = document.createElement("h3");
+        let buildingName = document.createElement("p");
         buildingName.className = "buildingName"
         buildingName.textContent = spots.get(key).name;
+        buildingContentContainer.appendChild(buildingName)
 
-        div.setAttribute('data-building', key);
+        buildingContainer.setAttribute('data-building', key);
 
-        div.appendChild(image);
-        div.appendChild(buildingName);
         let fraction = document.createElement("p"); // fractions html element to hold fraction
         fraction.className = "fraction"; // give it fraction class (IMPORTANT)
         fraction.setAttribute('data-building', key); // gives it building data (IMPORTANT)
@@ -1525,14 +1531,19 @@ function update() {
         } else {
             fraction.textContent = currsRoom + "/" + totalRooms(key); // makes text content currRooms/totalRooms
         }
-        div.appendChild(fraction); // adds fraction to building box
-        div.addEventListener("click", () => {
-            displayClassrooms(div.dataset.building);
-            currBuilding = div.dataset.building;
+
+        buildingContentContainer.appendChild(fraction)
+
+        buildingContainer.appendChild(imageContainer);
+        buildingContainer.appendChild(buildingContentContainer);
+
+        buildingContainer.addEventListener("click", () => {
+            displayClassrooms(buildingContainer.dataset.building);
+            currBuilding = buildingContainer.dataset.building;
             updateFractions();
         });
 
-        leftPanel.appendChild(div);
+        leftPanel.appendChild(buildingContainer);
     })
 }
 
