@@ -19,6 +19,21 @@ html, body {
     margin-right: 0%;
 }
 
+.daySelector{
+    position: relative;
+    top: 15px;
+    left: 20px;
+
+
+    
+}
+
+.timeSelector {
+    position: relative;
+    bottom: 5px;
+    left: 220px;
+}
+
 .mainArea{
     display: flex;
     align-items: center;
