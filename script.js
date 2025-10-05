@@ -981,11 +981,6 @@ function addCourseByDay(map, object) {
     addCourseByTime(timeMap, object);
 }
 
-let buildingMap = new Map();
-for (let t = 0; t < roomData.length; t++) {
-    addCourseByBuilding(roomData[t]);
-}
-
 function displayClassrooms(building) {
     let roomsList = document.getElementById("rooms");
     roomsList.innerHTML = '';
@@ -1063,54 +1058,66 @@ function update() {
     })
 }
 
-document.getElementById("deletePopup").addEventListener("click", () => {
-    document.getElementById("popup").style.display = 'none';
-});
+function init() {
 
-document.getElementById("time-select").addEventListener("change", () => {
-    let selectedTime = document.getElementById("time-select").value;
-    let [hours, minutes] = selectedTime.split(":").map(Number);
-    time = hours;
-    updateRooms();
-})
+    document.getElementById("deletePopup").addEventListener("click", () => {
+        document.getElementById("popup").style.display = 'none';
+    });
 
-
-document.getElementById("time-select").addEventListener("change", () => {
-    let selectedTime = document.getElementById("time-select").value;
-    let [hours, minutes] = selectedTime.split(":").map(Number);
-    time = hours;
-    updateRooms();
-})
-
-let dayBtns = document.getElementsByClassName("day-btn");
-for (let i = 0; i < dayBtns.length; i++) {
-    dayBtns[i].addEventListener("click", () => {
-        if (!day) {
-        } else {
-            switch (day) {
-                case "Mon":
-                    dayBtns[0].removeAttribute("id");
-                    break;
-                case "Tue":
-                    dayBtns[1].removeAttribute("id");
-                    break;
-                case "Wed":
-                    dayBtns[2].removeAttribute("id");
-                    break;
-                case "Thu":
-                    dayBtns[3].removeAttribute("id");
-                    break;
-                case "Fri":
-                    dayBtns[4].removeAttribute("id");
-                    break;
-            }
-        }
-        day = dayBtns[i].dataset.day;
-        console.log(dayBtns[i].dataset.day)
-        dayBtns[i].id = "clicked";
+    document.getElementById("time-select").addEventListener("change", () => {
+        let selectedTime = document.getElementById("time-select").value;
+        let [hours, minutes] = selectedTime.split(":").map(Number);
+        time = hours;
         updateRooms();
-
     })
+
+    
+    document.getElementById("time-select").addEventListener("change", () => {
+    let selectedTime = document.getElementById("time-select").value;
+    let [hours, minutes] = selectedTime.split(":").map(Number);
+    time = hours;
+    updateRooms();
+    })
+    
+
+    let dayBtns = document.getElementsByClassName("day-btn");
+    for (let i = 0; i < dayBtns.length; i++) {
+        dayBtns[i].addEventListener("click", () => {
+            if (!day) {
+            } else {
+                switch (day) {
+                    case "Mon":
+                        dayBtns[0].removeAttribute("id");
+                        break;
+                    case "Tue":
+                        dayBtns[1].removeAttribute("id");
+                        break;
+                    case "Wed":
+                        dayBtns[2].removeAttribute("id");
+                        break;
+                    case "Thu":
+                        dayBtns[3].removeAttribute("id");
+                        break;
+                    case "Fri":
+                        dayBtns[4].removeAttribute("id");
+                        break;
+                }
+            }
+            day = dayBtns[i].dataset.day;
+            console.log(dayBtns[i].dataset.day)
+            dayBtns[i].id = "clicked";
+            updateRooms();
+
+        })
+    }
 }
 
+
+let buildingMap = new Map();
+for (let t = 0; t < roomData.length; t++) {
+addCourseByBuilding(roomData[t]);
+}
+
+
+init();
 update();
