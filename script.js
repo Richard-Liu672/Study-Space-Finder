@@ -924,11 +924,11 @@ function parseTime(str) {
 }
 
 function getDayAndTime() {
-  const daySelectElement = document.getElementById("day-select");
-  const timeInputElement = document.getElementById("time-select");
+  let daySelectElement = document.getElementById("day-select");
+  let timeInputElement = document.getElementById("time-select");
 
-  const selectedDay = daySelectElement.value;
-  const selectedTime = timeInputElement.value; 
+  let selectedDay = daySelectElement.value;
+  let selectedTime = timeInputElement.value; 
 
   console.log("Selected Day:", selectedDay);
   console.log("Selected Time:", selectedTime);
