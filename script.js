@@ -1447,11 +1447,17 @@ function displayClassrooms(building) {
         for (let i = 0; i < rooms.length; i++) {
             roomsSet.add(rooms[i])
         }
-        roomsSet.forEach(room => {
-            let element = document.createElement("li");
-            element.textContent = room;
+        if (roomsSet.size === 0) {
+            let element = document.createElement("li");     // if no classes avaliable, make text saying no classes avaliable
+            element.textContent = "No Classes Avaliable";
             roomsList.appendChild(element);
-        })
+        } else {
+            roomsSet.forEach(room => {
+                let element = document.createElement("li");
+                element.textContent = room;
+                roomsList.appendChild(element);
+            })
+        }
     }
     
 }
@@ -1471,11 +1477,17 @@ function updateRooms() {
         for (let i = 0; i < rooms.length; i++) {
             roomsSet.add(rooms[i])
         }
-        roomsSet.forEach(room => {
+        if (roomsSet.size === 0) {
             let element = document.createElement("li");
-            element.textContent = room;
+            element.textContent = "No Classes Avaliable"; // if no classes avaliable, make text saying no classes avaliable
             roomsList.appendChild(element);
-        })
+        } else {
+            roomsSet.forEach(room => {
+                let element = document.createElement("li");
+                element.textContent = room;
+                roomsList.appendChild(element);
+            })
+        }
     }
     
 }
@@ -1511,6 +1523,7 @@ function update() {
         div.addEventListener("click", () => {
             displayClassrooms(div.dataset.building);
             currBuilding = div.dataset.building;
+            updateFractions();
         });
 
         leftPanel.appendChild(div);
