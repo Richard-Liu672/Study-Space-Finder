@@ -69,17 +69,6 @@ html, body {
     margin: 0%;
 }
 
-.leftPanel{
-    border-radius: 15px;
-    height: 97%;
-    width: 20%;
-    background-color: rgb(243, 236, 236);
-    margin-top: 0%;
-    margin-bottom: 0%;
-    margin-left: 0%;
-    margin-right: 0.4%;
-    font-family: "Monaco";
-}
 #map{
     border-radius: 15px;
     height: 97%;
@@ -89,27 +78,45 @@ html, body {
     margin-left: 0.4%;
     margin-right: 0%;
     position: relative;
+    flex: 1;
+}
+
+#mapPopup{
+    border-radius: 15px;
+    height: 97%;
+    width: 50%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    margin-left: 0.4%;
+    margin-right: 0%;
+    position: relative;
 }
 
 #popup {
-    position: absolute;
-    z-index: 2;
-    background: rgb(255, 255, 255);
-    width: 200px;
-    height: 250px;
+    border-radius: 15px;
+    height: 97%;
+    width: 25%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    margin-left: 0.4%;
+    margin-right: 0.4%;
+    position: relative;
     display: none;
-    border: 1px solid gray;
-    border-radius: 7px;
+    background-color: #91daef;
 }
 
 #deletePopup {
-    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    height: 50px;
+    background-color: #57b6d1;
+    border-radius: 15px;
+    border: 0px solid transparent;
+    margin: 10px;
+    background-image: "Icons/left.svg";
 }
-
-.leftPanel div img {
-    height: 100px;
-}
-
 
 .spotMarker{
     display: flex;
@@ -156,7 +163,7 @@ html, body {
 
 .leftPanel{
     border-radius: 15px;
-    height: 97%;
+    height: 96%;
     width: 25%;
     background-color: #d3f8e3;
     margin-top: 0%;
@@ -165,7 +172,6 @@ html, body {
     margin-right: 0.4%;
     padding: 0px;
     font-family: "Monaco";
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,13 +191,15 @@ html, body {
     padding: 0px;
     margin-top: 5px;
     margin-bottom: 5px;
+    overflow: hidden;
  }
 
  .buildingImage{
-    height: 105%;
+    height: 100%;
+    max-height: 100px;
     aspect-ratio: 1/1;
     border-radius: 15px;
-    object-fit: cover;
+    object-fit: fill;
     margin-right: 8px;
  }
 
