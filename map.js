@@ -12,7 +12,13 @@ const ikb = {
   streetViewControl: false,
   rotateControl: false,
   fullscreenControl: false,
-  mapId: "YOUR_MAP_ID"
+  mapId: "YOUR_MAP_ID",
+  styles: [
+    {
+      featureType: "poi",
+      stylers: [{ visibility: "off" }]
+    }
+  ],
 };
 
 const StudySpots = [

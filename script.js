@@ -929,6 +929,7 @@ function parseTime(str) {
     return hours;
 }
 
+
 function addCourseByBuilding(object) {
     if (buildingMap.has(object["building"])) {
         addCourseByDay(buildingMap.get(object["building"]), object);
@@ -1040,15 +1041,24 @@ function update() {
     leftPanel.innerHTML = "";
     buildingMap.forEach((value, key, map) => {
         let div = document.createElement("div");
+        div.className = "buildingContainer"
         let image = document.createElement("img");
+        image.className = "buildingImage"
         image.src = spots.get(key).img;
+        let buildingName = document.createElement("h3");
+        buildingName.className = "buildingName"
+        buildingName.textContent = spots.get(key).name;
+
         div.setAttribute('data-building', key);
-        div.textContent = spots.get(key).name;
+
         div.appendChild(image);
+        div.appendChild(buildingName);
+
         div.addEventListener("click", () => {
             displayClassrooms(div.dataset.building);
             currBuilding = div.dataset.building;
         });
+
         leftPanel.appendChild(div);
     })
 }
@@ -1056,6 +1066,14 @@ function update() {
 document.getElementById("deletePopup").addEventListener("click", () => {
     document.getElementById("popup").style.display = 'none';
 });
+
+document.getElementById("time-select").addEventListener("change", () => {
+    let selectedTime = document.getElementById("time-select").value;
+    let [hours, minutes] = selectedTime.split(":").map(Number);
+    time = hours;
+    updateRooms();
+})
+
 
 document.getElementById("time-select").addEventListener("change", () => {
     let selectedTime = document.getElementById("time-select").value;
