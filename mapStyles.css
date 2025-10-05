@@ -49,3 +49,41 @@ html, body {
     margin-left: 0.5%;
     margin-right: 0%;
 }
+
+.spotMarker{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    background-color: #222222;
+    border-radius: 6px;
+    height: 35px;
+    width: auto;
+    max-width: 260px;
+}
+
+.spotImageContainer{
+    height: 100%;
+    aspect-ratio: 1/1;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    background-color: transparent;
+    padding: 0px;
+}
+
+.spotImage{
+    aspect-ratio: 1/1;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 5px;
+}
+
+.spotText{
+    display: block;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 7;
+    font-weight: 500;
+    color: whitesmoke;
+}
