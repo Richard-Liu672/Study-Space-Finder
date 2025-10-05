@@ -1503,6 +1503,7 @@ function update() {
         fraction.setAttribute('data-building', key); // gives it building data (IMPORTANT)
         let currRooms = avaliableRooms(key); // loads current avaliable rooms
         if (currRooms < 0) { // does nothing if time or day isn't selected
+            fraction.textContent = "N/A"
         } else {
             fraction.textContent = currsRoom + "/" + totalRooms(key); // makes text content currRooms/totalRooms
         }
@@ -1536,7 +1537,7 @@ function updateFractions() {            // called everytime time or day is updat
         let building = allFracs[i].dataset.building;
         let currRooms = avaliableRooms(building);
         if (currRooms < 0) {
-
+            allFracs[i].textContent = "N/A"
         } else {
             allFracs[i].textContent = currRooms + "/" + totalRooms(building);
         }
@@ -1568,10 +1569,17 @@ function init() {
 
     document.getElementById("time-select").addEventListener("change", () => {      
         let selectedTime = document.getElementById("time-select").value;
-        let [hours, minutes] = selectedTime.split(":").map(Number);
-        time = hours;
-        updateRooms();
-        updateFractions(); // changes the time, thus calls updateFractions
+        if (!selectedTime) {
+            time = -1;
+            updateRooms();
+            updateFractions();
+        } else {
+            let [hours, minutes] = selectedTime.split(":").map(Number);
+            time = hours;
+            updateRooms();
+            updateFractions(); // changes the time, thus calls updateFractions
+        }
+        
     })
 
 
@@ -1613,6 +1621,9 @@ let buildingMap = new Map();
 for (let t = 0; t < roomData.length; t++) {
 addCourseByBuilding(roomData[t]);
 }
+
+
+console.log(buildingMap);
 
 
 init();
