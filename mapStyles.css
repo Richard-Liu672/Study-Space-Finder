@@ -22,12 +22,6 @@ html, body {
     margin-right: 0%;
 }
 
-/* this could be deleted i think?*/
-.daySelector{
-    position: relative;
-    top: 10px;
-    left: 20px; 
-}
 
 .day-btn {
     margin: 5px; 
@@ -52,10 +46,38 @@ html, body {
     border-color: #007bff;
 }
 
+.day-btn {
+    margin: 5px; 
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background: #f5f5f5;
+    transition: background 0.2s;
+    font-family: "Times New Roman";
+    font-size: 12;
+    position: relative; 
+    left: 10px; 
+    top: 2px;
+
+}
+
+.day-btn:hover {
+    background:#eaeaea
+}
+
+.day-btn:active{
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
 .timeSelector {
     position: relative;
-    bottom: 5px;
-    left: 220px;
+    top: -28px;
+    left: 490px;
+    z-index: 10;
+
 }
 
 .mainArea{
@@ -69,17 +91,7 @@ html, body {
     margin: 0%;
 }
 
-.leftPanel{
-    border-radius: 15px;
-    height: 97%;
-    width: 20%;
-    background-color: rgb(243, 236, 236);
-    margin-top: 0%;
-    margin-bottom: 0%;
-    margin-left: 0%;
-    margin-right: 0.4%;
-    font-family: "Monaco";
-}
+
 #map{
     border-radius: 15px;
     height: 97%;
@@ -109,7 +121,6 @@ html, body {
 .leftPanel div img {
     height: 100px;
 }
-
 
 .spotMarker{
     display: flex;

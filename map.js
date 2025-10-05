@@ -21,8 +21,7 @@ const ikb = {
   ],
 };
 
-const StudySpots = [
-  {
+const StudySpots = [{
     name: "Institute for Computing, Information and Cognitive Systems (ICICS)",
     lat: 49.261236365005786,
     lng: -123.24891457799694,
@@ -34,7 +33,22 @@ const StudySpots = [
     lat: 49.261769231405516,
     lng: -123.24959089471172,
     img: "Images/MCLD.jpg",
-    key: "MCLD"
+    key: "Hector J. MacLeod Building (MCLD)"
+  },
+  {
+    name: "Biological Sciences Building (BIOS)",
+    lat: 49.264600975121866, 
+    lng: -123.25105318852933,
+    img: "Images/BIOS.jpg",
+    key: "Biological Sciences Building (BIOS)"
+
+  },
+  {
+    name: "Chemistry Building (CHEM)",
+    lat: 49.265562774704335, 
+    lng: -123.2524878570304,
+    img: "Images/CHEM.jpg",
+    key: "Chemistry Building (CHEM)"
   }
 ];
 
