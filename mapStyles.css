@@ -81,3 +81,9 @@ html, body {
 #deletePopup {
     width: 500px;
 }
+
+.findClassesButton {
+    position: relative;
+    top: -26px;
+    left: 400px;
+}
