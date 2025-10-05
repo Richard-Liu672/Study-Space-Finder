@@ -1435,6 +1435,12 @@ function displayClassrooms(building) {
     let roomsList = document.getElementById("rooms");
     roomsList.innerHTML = '';
     let div = document.getElementById("popup");
+    let map = document.getElementById("map");
+    if (!map) {
+
+    } else {
+        map.id = "mapPopup"
+    }
     div.style.display = 'block';
     if (!day || time < 0) {
         let warning = document.createElement("p");
@@ -1578,6 +1584,8 @@ function init() {
 
     document.getElementById("deletePopup").addEventListener("click", () => {
         document.getElementById("popup").style.display = 'none';
+        let map = document.getElementById("mapPopup");
+        map.id = "map"
     });
 
     document.getElementById("time-select").addEventListener("change", () => {      
