@@ -1,5 +1,36 @@
-let day;
-let time; 
+let map;
+
+const StudySpots = [{
+    name: "Institute for Computing, Information and Cognitive Systems (ICICS)",
+    lat: 49.261236365005786,
+    lng: -123.24891457799694,
+    img: "Images/ICICS.jpg",
+    key: "ICCS"
+  },
+  {
+    name: "Hector J. MacLeod Building (MCLD)",
+    lat: 49.261769231405516,
+    lng: -123.24959089471172,
+    img: "Images/MCLD.jpg",
+    key: "Hector J. MacLeod Building (MCLD)"
+  },
+  {
+    name: "Biological Sciences Building (BIOS)",
+    lat: 49.264600975121866, 
+    lng: -123.25105318852933,
+    img: "Images/BIOS.jpg",
+    key: "Biological Sciences Building (BIOS)"
+
+  },
+  {
+    name: "Chemistry Building (CHEM)",
+    lat: 49.265562774704335, 
+    lng: -123.2524878570304,
+    img: "Images/CHEM.jpg",
+    key: "Chemistry Building (CHEM)"
+  }
+
+]
 const roomData = [
     {
       "day": "Thu",
@@ -896,23 +927,451 @@ const roomData = [
       "end time": "5:00 p.m.",
       "building": "ICCS",
       "room": "X350"
+    },
+    {
+    "day": "Mon",
+    "start time": "8:00 a.m.",
+    "end time": "9:00 a.m.",
+    "building": "Biological Sciences Building (BIOS)",
+    "room": "1001"
+    },
+    {
+      "day": "Wed",
+      "start time": "8:00 a.m.",
+      "end time": "9:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Fri",
+      "start time": "8:00 a.m.",
+      "end time": "9:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Mon",
+      "start time": "11:00 a.m.",
+      "end time": "12:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Wed",
+      "start time": "11:00 a.m.",
+      "end time": "12:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Fri",
+      "start time": "11:00 a.m.",
+      "end time": "12:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Tue",
+      "start time": "12:30 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Thu",
+      "start time": "12:30 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Mon",
+      "start time": "9:00 a.m.",
+      "end time": "10:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Tue",
+      "start time": "9:30 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Thu",
+      "start time": "9:30 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Tue",
+      "start time": "12:30 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Thu",
+      "start time": "12:30 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Mon",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Wed",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Fri",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Mon",
+      "start time": "2:00 p.m.",
+      "end time": "3:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Wed",
+      "start time": "2:00 p.m.",
+      "end time": "3:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Fri",
+      "start time": "2:00 p.m.",
+      "end time": "3:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Mon",
+      "start time": "3:00 p.m.",
+      "end time": "4:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Wed",
+      "start time": "3:00 p.m.",
+      "end time": "4:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Fri",
+      "start time": "3:00 p.m.",
+      "end time": "4:00 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Fri",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Thu",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Mon",
+      "start time": "12:00 p.m.",
+      "end time": "1:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Tue",
+      "start time": "9:00 a.m.",
+      "end time": "10:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Thu",
+      "start time": "9:00 a.m.",
+      "end time": "10:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Fri",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Wed",
+      "start time": "9:00 a.m.",
+      "end time": "10:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Tue",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Fri",
+      "start time": "9:00 a.m.",
+      "end time": "10:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Thu",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Wed",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Fri",
+      "start time": "12:00 p.m.",
+      "end time": "1:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Thu",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Mon",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Tue",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Wed",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Wed",
+      "start time": "11:00 a.m.",
+      "end time": "12:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Tue",
+      "start time": "11:00 a.m.",
+      "end time": "12:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Mon",
+      "start time": "11:00 a.m.",
+      "end time": "12:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Thu",
+      "start time": "11:00 a.m.",
+      "end time": "12:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Fri",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Wed",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Tue",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Mon",
+      "start time": "1:00 p.m.",
+      "end time": "2:00 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Thu",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Fri",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Wed",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Tue",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Mon",
+      "start time": "10:00 a.m.",
+      "end time": "11:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "2002"
+    },
+    {
+      "day": "Tue",
+      "start time": "4:00 p.m.",
+      "end time": "5:30 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Thu",
+      "start time": "4:00 p.m.",
+      "end time": "5:30 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Tue",
+      "start time": "5:00 p.m.",
+      "end time": "6:30 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Thu",
+      "start time": "5:00 p.m.",
+      "end time": "6:30 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Tue",
+      "start time": "2:00 p.m.",
+      "end time": "3:30 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Thu",
+      "start time": "2:00 p.m.",
+      "end time": "3:30 p.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Tue",
+      "start time": "2:00 p.m.",
+      "end time": "3:30 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Thu",
+      "start time": "2:00 p.m.",
+      "end time": "3:30 p.m.",
+      "building": "Chemistry Building (CHEM)",
+      "room": "B150"
+    },
+    {
+      "day": "Mon",
+      "start time": "9:00 a.m.",
+      "end time": "10:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Wed",
+      "start time": "9:00 a.m.",
+      "end time": "10:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
+    },
+    {
+      "day": "Fri",
+      "start time": "9:00 a.m.",
+      "end time": "10:00 a.m.",
+      "building": "Biological Sciences Building (BIOS)",
+      "room": "1001"
     }
   ]
 
- const StudySpots = [{
-  name: "Institute for Computing, Information and Cognitive Systems (ICICS)",
-  lat: 49.261236365005786,
-  lng: -123.24891457799694,
-  img: "Images/ICICS.jpg",
-  key: "ICCS"
-},
-{
-  name: "Hector J. MacLeod Building (MCLD)",
-  lat: 49.261769231405516,
-  lng: -123.24959089471172,
-  img: "Images/MCLD.jpg",
-  key: "Hector J. MacLeod Building (MCLD)"
-}]
+
+let spots = new Map();
+for (let i = 0; i < StudySpots.length; i++) {
+    spots.set(StudySpots[i].key, StudySpots[i]);
+}
+
+let day;
+let time;
 
 function parseTime(str) {
     let [time, meridiem] = str.split(' ');
@@ -924,7 +1383,7 @@ function parseTime(str) {
 
 
 function getDayAndTime() {
-  let daySelectElement = document.getElementById("day-select");
+  let daySelectElement = document.getElementById("day-btn");
   let timeInputElement = document.getElementById("time-select");
 
   let selectedDay = daySelectElement.value;
