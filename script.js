@@ -917,8 +917,8 @@ for (let i = 0; i < StudySpots.length; i++) {
     spots.set(StudySpots[i].key, StudySpots[i]);
 }
 
-let day = "Mon";
-let time = 12;
+let day;
+let time;
 
 function parseTime(str) {
     let [time, meridiem] = str.split(' ');
@@ -1007,14 +1007,24 @@ function displayClassrooms(building) {
     roomsList.innerHTML = '';
     let div = document.getElementById("popup");
     div.style.display = 'block';
-    let rooms = buildingMap.get(building).get(day).get(time);
-    rooms = rooms.map(object => object["building"] + " " + object["room"]);
-    for (let i = 0; i < rooms.length; i++) {
-        let element = document.createElement("li");
-        element.textContent = rooms[i];
-        roomsList.appendChild(element);
+    if (!day || !time) {
+        let warning = document.createElement("p");
+        warning.textContent = "Please select a time!";
+        roomsList.appendChild(warning);
+    } else {
+        let rooms = buildingMap.get(building).get(day).get(time);
+        rooms = rooms.map(object => object["building"] + " " + object["room"]);
+        let roomsSet = new Set();
+        for (let i = 0; i < rooms.length; i++) {
+            roomsSet.add(rooms[i])
+        }
+        roomsSet.forEach(room => {
+            let element = document.createElement("li");
+            element.textContent = room;
+            roomsList.appendChild(element);
+        })
     }
-
+    
 }
 
 
@@ -1038,4 +1048,5 @@ function update() {
 document.getElementById("deletePopup").addEventListener("click", () => {
     document.getElementById("popup").style.display = 'none';
 });
+
 update();
