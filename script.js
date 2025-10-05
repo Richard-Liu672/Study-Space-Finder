@@ -1,3 +1,4 @@
+
 const roomData = [
     {
       "day": "Thu",
@@ -928,6 +929,7 @@ function parseTime(str) {
     return hours;
 }
 
+
 function getDayAndTime() {
   let daySelectElement = document.getElementById("day-select");
   let timeInputElement = document.getElementById("time-select");
@@ -935,16 +937,41 @@ function getDayAndTime() {
   let selectedDay = daySelectElement.value;
   let selectedTime = timeInputElement.value; 
 
+  
+
+  let selectedHour;
+  
+  selectedHour = parseInt(selectedTime.split(':')[0], 10);
+  
+
   console.log("Selected Day:", selectedDay);
-  console.log("Selected Time:", selectedTime);
+  console.log("selected time", selectedTime); 
+  console.log("Selected hour:", selectedHour);
 
   return {
     day: selectedDay,
-    time: selectedTime
+    time: selectedHour
   }
 }
 
-const selectiondata = getDayAndTime();
+const searchButton = document.getElementById("findButton");
+
+
+searchButton.addEventListener("click", function() {
+  let selectiondata = getDayAndTime();
+  day = selectiondata.day;
+
+
+  time = selectiondata.time;
+  update();
+  
+  
+ 
+
+});
+
+
+
 
 function addCourseByBuilding(object) {
     if (buildingMap.has(object["building"])) {
@@ -1040,6 +1067,7 @@ function update() {
         div.appendChild(image);
         div.addEventListener("click", () => {
             displayClassrooms(div.dataset.building);
+            console.log("works?");
         });
         leftPanel.appendChild(div);
     })
