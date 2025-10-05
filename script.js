@@ -897,6 +897,23 @@ const roomData = [
     }
   ]
 
+ const StudySpots = [{
+  name: "Institute for Computing, Information and Cognitive Systems (ICICS)",
+  lat: 49.261236365005786,
+  lng: -123.24891457799694,
+  img: "Images/ICICS.jpg",
+  key: "ICCS"
+},
+{
+  name: "Hector J. MacLeod Building (MCLD)",
+  lat: 49.261769231405516,
+  lng: -123.24959089471172,
+  img: "Images/MCLD.jpg.jpg",
+  key: "Hector J. MacLeod Building (MCLD)"
+}]
+
+let day = "Mon";
+let time = 12;
 
 function parseTime(str) {
     let [time, meridiem] = str.split(' ');
@@ -963,11 +980,31 @@ for (let t = 0; t < roomData.length; t++) {
     addCourseByBuilding(roomData[t]);
 }
 
-buildingMap.forEach((value, key, map) => {
-    value.forEach((value, key, map) => {
-        console.log(value);
-    });
+function displayClassrooms(building) {
+    let div = document.getElementById("popup");
+    div.style.display = 'block';
+    let rooms = buildingMap.get(building).get(day).get(time);
+    rooms = rooms.map(object => object["building"] + object["room"]).join(", ");
+    div.textContent = building + rooms;
+}
+
+
+function update() {
+    let leftPanel = document.querySelector(".leftPanel");
+    leftPanel.innerHTML = "";
+    buildingMap.forEach((value, key, map) => {
+        let div = document.createElement("div");
+        div.setAttribute('data-building', key);
+        div.textContent = key;
+        div.addEventListener("click", () => {
+            displayClassrooms(div.dataset.building);
+        });
+        leftPanel.appendChild(div);
+    })
+}
+
+let deleteButton = document.getElementById("deletePopup");
+deleteButton.addEventListener("click", () => {
+    document.getElementById("popup").style.display = 'none';
 });
-
-
-console.log("works");
+update();

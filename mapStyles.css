@@ -48,4 +48,21 @@ html, body {
     margin-bottom: 0%;
     margin-left: 0.5%;
     margin-right: 0%;
+    position: relative;
+}
+.leftPanel div {
+    border: solid;
+    margin: 20px;
+}
+#popup {
+    position: absolute;
+    z-index: 2;
+    background: white;
+    width: 500px;
+    height: 500px;
+    display: none;
+
+}
+#deletePopup {
+    width: 500px;
 }
