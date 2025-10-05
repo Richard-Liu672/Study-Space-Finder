@@ -76,8 +76,12 @@ html, body {
     width: 500px;
     height: 500px;
     display: none;
-
 }
+
 #deletePopup {
     width: 500px;
+}
+
+.leftPanel div img {
+    height: 100px;
 }

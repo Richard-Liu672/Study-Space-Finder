@@ -912,6 +912,11 @@ const roomData = [
   key: "Hector J. MacLeod Building (MCLD)"
 }]
 
+let spots = new Map();
+for (let i = 0; i < StudySpots.length; i++) {
+    spots.set(StudySpots[i].key, StudySpots[i]);
+}
+
 let day = "Mon";
 let time = 12;
 
@@ -998,11 +1003,18 @@ for (let t = 0; t < roomData.length; t++) {
 }
 
 function displayClassrooms(building) {
+    let roomsList = document.getElementById("rooms");
+    roomsList.innerHTML = '';
     let div = document.getElementById("popup");
     div.style.display = 'block';
     let rooms = buildingMap.get(building).get(day).get(time);
-    rooms = rooms.map(object => object["building"] + object["room"]).join(", ");
-    div.textContent = building + rooms;
+    rooms = rooms.map(object => object["building"] + " " + object["room"]);
+    for (let i = 0; i < rooms.length; i++) {
+        let element = document.createElement("li");
+        element.textContent = rooms[i];
+        roomsList.appendChild(element);
+    }
+
 }
 
 
@@ -1011,8 +1023,11 @@ function update() {
     leftPanel.innerHTML = "";
     buildingMap.forEach((value, key, map) => {
         let div = document.createElement("div");
+        let image = document.createElement("img");
+        image.src = spots.get(key).img;
         div.setAttribute('data-building', key);
-        div.textContent = key;
+        div.textContent = spots.get(key).name;
+        div.appendChild(image);
         div.addEventListener("click", () => {
             displayClassrooms(div.dataset.building);
         });
@@ -1020,8 +1035,7 @@ function update() {
     })
 }
 
-let deleteButton = document.getElementById("deletePopup");
-deleteButton.addEventListener("click", () => {
+document.getElementById("deletePopup").addEventListener("click", () => {
     document.getElementById("popup").style.display = 'none';
 });
 update();
