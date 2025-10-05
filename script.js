@@ -971,3 +971,19 @@ buildingMap.forEach((value, key, map) => {
 
 
 console.log("works");
+
+StudySpots = 
+[{
+  name: "Institute for Computing, Information and Cognitive Systems (ICICS)",
+  lat: 49.261236365005786,
+  lng: -123.24891457799694,
+  img: "Images/ICICS.jpg",
+  key: "ICCS"
+},
+{
+  name: "Hector J. MacLeod Building (MCLD)",
+  lat: 49.261769231405516,
+  lng: -123.24959089471172,
+  img: "Images/MCLD.jpg.jpg",
+  key: "Hector J. MacLeod Building (MCLD)"
+}]
