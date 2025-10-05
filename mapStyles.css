@@ -27,7 +27,7 @@ html, body {
     width: 100%;
     height: 5%;
     border-radius: 15px;
-    background-color: #4A66D4;
+    background-color: #9bddf0;
     flex-shrink: 0; 
     margin-top: 0%;
     margin-bottom: 0%;
@@ -43,14 +43,49 @@ html, body {
     margin: 5px; 
     padding: 6px 14px;
     border-radius: 10px;
-    background: #f5f5f5;
-    font-size: 12;
+    background: #def4fa;
+    font-size: 10pt;
+    font-weight: 600;
+    transition: 0.2s;
 }
 
-.timeSelector {
-    display: block;
-    width: 200px;
-    background-color: yellow;
+.day-btn:hover {
+    background: #86c0d1;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.day-btn:active{
+    background: #ffe44a;
+    transition: 0.2s;
+
+}
+
+#clicked{
+    background: #ffe44a;
+    transition: 0.2s;
+}
+.timeSelector{
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    padding: 4px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: 0.8%;
+    background-color: #def4fa;
+    cursor: pointer;
+
+}
+
+#time-select {
+    border: none;
+    background-color: #def4fa;
+    border-radius: 15px;
+    font-size: 10pt;
+    font-weight: 600;
+    cursor: pointer;
+
 }
 
 .mainArea{
@@ -74,6 +109,7 @@ html, body {
     margin-right: 0%;
     position: relative;
     flex: 1;
+    transition-duration: 0s;
 }
 
 #mapPopup{
@@ -85,6 +121,7 @@ html, body {
     margin-left: 0.4%;
     margin-right: 0%;
     position: relative;
+    transition-duration: 0.7s;
 }
 
 #popup {
@@ -97,7 +134,8 @@ html, body {
     margin-right: 0.4%;
     position: relative;
     display: none;
-    background-color: #91daef;
+    background-color: #d3f8e3;
+    transition-duration: 0.7s;
 }
 
 #deletePopup {
@@ -106,11 +144,19 @@ html, body {
     justify-content: center;
     aspect-ratio: 1/1;
     height: 50px;
-    background-color: #57b6d1;
+    background-color: #9fe0bb;
     border-radius: 15px;
     border: 0px solid transparent;
     margin: 10px;
     background-image: "Icons/left.svg";
+    transition-duration: 0.2s;
+}
+
+#deletePopup:hover {
+    aspect-ratio: 1/1;
+    height: 55px;
+    transition-duration: 0.2s;
+    cursor: pointer;
 }
 
 .spotMarker{
@@ -151,16 +197,12 @@ html, body {
     color: whitesmoke;
 }
 
-#clicked {
-    background: blue;
-}
-
 
 .leftPanel{
     border-radius: 15px;
     height: 96%;
     width: 25%;
-    background-color: #d3f8e3;
+    background-color: #def4fa;
     margin-top: 0%;
     margin-bottom: 0%;
     margin-left: 0%;
@@ -169,8 +211,8 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
 }
 
  .buildingContainer{
@@ -178,7 +220,7 @@ html, body {
     align-items: center;
     justify-content: flex-start;
     align-content: center;
-    background-color: #62e3a5;
+    background-color: #9bddf0;
     border-radius: 15px;
     height: 130px;
     width: 94%;
@@ -186,6 +228,13 @@ html, body {
     margin-top: 5px;
     margin-bottom: 5px;
     overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s;
+ }
+
+ .buildingContainer:hover{
+    background-color: #82baca;
+    transition: 0.2s;
  }
 
 .imageBuildingContainer{
@@ -212,18 +261,18 @@ html, body {
     justify-content: space-evenly;
     height: 100%;
     width: 100%;
+    margin-left: 2%;
 }
 
  .buildingName{
     font-size: 14pt;
-    color: black;
     margin: 4px;
-    font-weight: 475;
+    font-weight: 500;
  }
 
  .fraction{
     align-self: self-start;
-    background-color: yellow;
+    background-color: #ffe44a;
     margin: 2px;
     padding: 2px;
     padding-left: 10px;
