@@ -1,5 +1,22 @@
 let map;
 
+const StudySpots = [{
+    name: "Institute for Computing, Information and Cognitive Systems (ICICS)",
+    lat: 49.261236365005786,
+    lng: -123.24891457799694,
+    img: "Images/ICICS.jpg",
+    key: "ICCS"
+  },
+  {
+    name: "Hector J. MacLeod Building (MCLD)",
+    lat: 49.261769231405516,
+    lng: -123.24959089471172,
+    img: "Images/MCLD.jpg",
+    key: "Hector J. MacLeod Building (MCLD)"
+  }]
+  
+
+
 const ikb = {
   center: { lat: 49.265, lng: -123.25 },
   zoom: 17,
@@ -12,23 +29,6 @@ const ikb = {
   fullscreenControl: false,
   mapId: "YOUR_MAP_ID"
 };
-
-const StudySpots = [
-  {
-    name: "Institute for Computing, Information and Cognitive Systems (ICICS)",
-    lat: 49.261236365005786,
-    lng: -123.24891457799694,
-    img: "./Images/ICICS.jpg",
-    key: "ICCS"
-  },
-  {
-    name: "Hector J. MacLeod Building (MCLD)",
-    lat: 49.261769231405516,
-    lng: -123.24959089471172,
-    img: "./Images/MCL.jpg",
-    key: "MCLD"
-  }
-];
 
 async function initMap() {
   const { Map, OverlayView } = await google.maps.importLibrary("maps");
@@ -990,20 +990,6 @@ const roomData = [
     }
   ]
 
- const StudySpots = [{
-  name: "Institute for Computing, Information and Cognitive Systems (ICICS)",
-  lat: 49.261236365005786,
-  lng: -123.24891457799694,
-  img: "Images/ICICS.jpg",
-  key: "ICCS"
-},
-{
-  name: "Hector J. MacLeod Building (MCLD)",
-  lat: 49.261769231405516,
-  lng: -123.24959089471172,
-  img: "Images/MCLD.jpg",
-  key: "Hector J. MacLeod Building (MCLD)"
-}]
 
 let spots = new Map();
 for (let i = 0; i < StudySpots.length; i++) {
@@ -1046,21 +1032,6 @@ function getDayAndTime() {
   }
 }
 
-const searchButton = document.getElementById("findButton");
-
-
-searchButton.addEventListener("click", function() {
-  let selectiondata = getDayAndTime();
-  day = selectiondata.day;
-
-
-  time = selectiondata.time;
-  update();
-  
-  
- 
-
-});
 
 
 
@@ -1159,7 +1130,6 @@ function update() {
         div.appendChild(image);
         div.addEventListener("click", () => {
             displayClassrooms(div.dataset.building);
-            console.log("works?");
         });
         leftPanel.appendChild(div);
     })
