@@ -1,5 +1,3 @@
-let map;
-
 const StudySpots = [{
     name: "Institute for Computing, Information and Cognitive Systems (ICICS)",
     lat: 49.261236365005786,
@@ -921,6 +919,7 @@ for (let i = 0; i < StudySpots.length; i++) {
 
 let day;
 let time;
+let currBuilding;
 
 function parseTime(str) {
     let [time, meridiem] = str.split(' ');
@@ -929,35 +928,6 @@ function parseTime(str) {
     if (meridiem.toLowerCase() === 'a.m.' && hours === 12) hours = 0;
     return hours;
 }
-
-
-function getDayAndTime() {
-  let daySelectElement = document.getElementById("day-select");
-  let timeInputElement = document.getElementById("time-select");
-
-  let selectedDay = daySelectElement.value;
-  let selectedTime = timeInputElement.value; 
-
-  
-
-  let selectedHour;
-  
-  selectedHour = parseInt(selectedTime.split(':')[0], 10);
-  
-
-  console.log("Selected Day:", selectedDay);
-  console.log("selected time", selectedTime); 
-  console.log("Selected hour:", selectedHour);
-
-  return {
-    day: selectedDay,
-    time: selectedHour
-  }
-}
-
-
-
-
 
 function addCourseByBuilding(object) {
     if (buildingMap.has(object["building"])) {
@@ -1040,6 +1010,30 @@ function displayClassrooms(building) {
     
 }
 
+function updateRooms() {
+    let roomsList = document.getElementById("rooms");
+    roomsList.innerHTML = '';
+    let div = document.getElementById("popup");
+    if (!day || !time) {
+        let warning = document.createElement("p");
+        warning.textContent = "Please select a time!";
+        roomsList.appendChild(warning);
+    } else {
+        let rooms = buildingMap.get(currBuilding).get(day).get(time);
+        rooms = rooms.map(object => object["building"] + " " + object["room"]);
+        let roomsSet = new Set();
+        for (let i = 0; i < rooms.length; i++) {
+            roomsSet.add(rooms[i])
+        }
+        roomsSet.forEach(room => {
+            let element = document.createElement("li");
+            element.textContent = room;
+            roomsList.appendChild(element);
+        })
+    }
+    
+}
+
 
 function update() {
     let leftPanel = document.querySelector(".leftPanel");
@@ -1053,6 +1047,7 @@ function update() {
         div.appendChild(image);
         div.addEventListener("click", () => {
             displayClassrooms(div.dataset.building);
+            currBuilding = div.dataset.building;
         });
         leftPanel.appendChild(div);
     })
@@ -1061,5 +1056,43 @@ function update() {
 document.getElementById("deletePopup").addEventListener("click", () => {
     document.getElementById("popup").style.display = 'none';
 });
+
+document.getElementById("time-select").addEventListener("change", () => {
+    let selectedTime = document.getElementById("time-select").value;
+    let [hours, minutes] = selectedTime.split(":").map(Number);
+    time = hours;
+    updateRooms();
+})
+
+let dayBtns = document.getElementsByClassName("day-btn");
+for (let i = 0; i < dayBtns.length; i++) {
+    dayBtns[i].addEventListener("click", () => {
+        if (!day) {
+        } else {
+            switch (day) {
+                case "Mon":
+                    dayBtns[0].removeAttribute("id");
+                    break;
+                case "Tue":
+                    dayBtns[1].removeAttribute("id");
+                    break;
+                case "Wed":
+                    dayBtns[2].removeAttribute("id");
+                    break;
+                case "Thu":
+                    dayBtns[3].removeAttribute("id");
+                    break;
+                case "Fri":
+                    dayBtns[4].removeAttribute("id");
+                    break;
+            }
+        }
+        day = dayBtns[i].dataset.day;
+        console.log(dayBtns[i].dataset.day)
+        dayBtns[i].id = "clicked";
+        updateRooms();
+
+    })
+}
 
 update();
