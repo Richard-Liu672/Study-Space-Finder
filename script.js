@@ -984,6 +984,6 @@ StudySpots =
   name: "Hector J. MacLeod Building (MCLD)",
   lat: 49.261769231405516,
   lng: -123.24959089471172,
-  img: "Images/MCLD.jpg.jpg",
+  img: "Images/MCLD.jpg",
   key: "Hector J. MacLeod Building (MCLD)"
 }]
